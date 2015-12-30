@@ -1,0 +1,2 @@
+# GenomicRangeQuery
+A codility problem
