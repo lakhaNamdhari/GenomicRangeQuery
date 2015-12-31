@@ -8,8 +8,10 @@ function solution(S, P, Q) {
     
     var i, count = [], tmpR, tmpS, tmpE, result = [];
     
+    // Reset counters
     A = C = G = T = 0;
-    
+    count.push( [0, 0, 0, 0] );
+
     for ( i = 0; i < S.length; i++ ){
         switch( S[i] ){
             case 'A':
@@ -28,26 +30,26 @@ function solution(S, P, Q) {
                 T++;
             break;
         }
-        count.push( A + '' + C + '' + G + '' + T );
+        count.push( [ A, C, G, T ] );
     }
     
     for ( i = 0; i < P.length; i++ ){
-        tmpS = ((P[i] - 1) < 0 ? '0000' : count[ P[i] - 1 ]).split('');
-        tmpE = count[ Q[i] ].split('');
+        tmpS = count[ P[i] ];
+        tmpE = count[ Q[i] + 1 ];
         
-        tmpR = tmpE[0] * 1 - tmpS[0] * 1;
+        tmpR = tmpE[0] - tmpS[0];
         if (tmpR > 0 ){
             result.push( 1 );
             continue;
         }
         
-        tmpR = tmpE[1] * 1 - tmpS[1] * 1;
+        tmpR = tmpE[1] - tmpS[1];
         if (tmpR > 0 ){
             result.push( 2 );
             continue;
         }
         
-        tmpR = tmpE[2] * 1 - tmpS[2] * 1;
+        tmpR = tmpE[2] - tmpS[2];
         if (tmpR > 0 ){
             result.push( 3 );
             continue;
